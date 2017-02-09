@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 
-
 class LogrCreateForm extends Component {
     constructor(props){
         super(props);
@@ -12,15 +11,11 @@ class LogrCreateForm extends Component {
 
 
     handleChange(event){
-        
-
-        console.log(event.target);
         this.setState({tags: event.target.value, text: "Some Text here"});
-        
     }
 
     handleSubmit(event){
-        console.log(this.state.tags);
+        console.log("SUBMIT STATE", this.state);
         event.preventDefault();
     }
 

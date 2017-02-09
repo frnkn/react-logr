@@ -9,7 +9,7 @@ class LogrItem extends Component {
         return (
             <article key={content.the_id}>
                 <p>{content.the_id}</p>
-                <p>{content.content}</p>
+                <p>{content.tags}</p>
                 <p>{content.text}</p>
             </article>
         );
