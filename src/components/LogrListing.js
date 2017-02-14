@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import LogrItem from '../components/LogrItem';
 import LogrCreateForm from '../components/LogrCreateForm';
+import { Container, Row, Col } from 'reactstrap';
 
 class LogrListing extends Component {
     constructor(props){
@@ -11,6 +12,13 @@ class LogrListing extends Component {
         this.state = {items: this.items}
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
+        this.handleDelete = this.handleDelete.bind(this);
+    }
+
+    handleDelete(event, id){
+        console.log("HEandle Delete Called", id);
+        
+
     }
 
     handleChange(event){
@@ -29,6 +37,14 @@ class LogrListing extends Component {
 
         console.log("NewItem", newItem);
 
+
+        //validate
+
+        //push to webservice
+
+        //get response, if response 201 than show, else render error
+
+
         this.setState((prevState) => ({
             items: prevState.items.concat(newItem),
         }));
@@ -39,20 +55,28 @@ class LogrListing extends Component {
     render (){
         //const the_items = this.props.items;
         return (
-            <section>
-                <form onSubmit={this.handleSubmit}>
-                    <h1>Logr Create Item Form</h1>
-                    <label>text:</label>
-                    <textarea></textarea>
-                    <label>Enter tags:</label>
-                    <input type="text" value={this.state.tags} onChange={this.handleChange}/>
-                    <input type="submit" value="Create Log" />
-                </form>
-                <h3>logr listing</h3>
-                {this.state.items.map((item) => (
-                    <LogrItem key={item.id} content={item} />
-                ))}    
-            </section>
+            <Container>
+                <Row>
+                    <Col>
+                        <form onSubmit={this.handleSubmit}>
+                            <h1>Logr Create Item Form</h1>
+                            <label>text:</label>
+                            <textarea></textarea>
+                            <label>Enter tags:</label>
+                            <input type="text" value={this.state.tags} onChange={this.handleChange}/>
+                            <input type="submit" value="Create Log" />
+                        </form>
+                    </Col>
+                </Row>
+                <Row>
+                    <Col xs="12">
+                        <h3>logr listing</h3>
+                        {this.state.items.map((item) => (
+                            <LogrItem key={item.id} content={item} deleteAction={this.handleDelete}/>
+                        ))}    
+                    </Col>
+                </Row>
+            </Container>
         );
     }
 }
