@@ -15,8 +15,23 @@ class LogrListing extends Component {
         this.handleDelete = this.handleDelete.bind(this);
     }
 
-    handleDelete(event, id){
-        console.log("HEandle Delete Called", id);
+    handleDelete(item_id){
+       
+        var array = this.state.items;
+        var the_index;
+
+        for (var i = 0; i < array.length; i++){
+            if (array[i].the_id === item_id){
+                var the_index = i;
+                
+            }
+        }
+
+        if (the_index > -1) {
+            array.splice(the_index, 1);
+        }
+
+        this.setState({items: array});
         
 
     }

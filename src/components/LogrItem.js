@@ -23,7 +23,7 @@ class LogrItem extends Component {
                                 <CardTitle>Test {content.the_id}</CardTitle>
                                 <CardText>{content.text}</CardText>
                                 <CardSubtitle><p>{content.tags}</p></CardSubtitle>
-                                <CardLink href="javascript:void(0)" onClick={() => this.props.deleteAction(12)}>Delete</CardLink>
+                                <CardLink href="javascript:void(0)" onClick={() => this.props.deleteAction(content.the_id)}>Delete</CardLink>
                                 <CardLink href="javascript:void(0)">Edit</CardLink>
                             </CardBlock>
                         </Card>
