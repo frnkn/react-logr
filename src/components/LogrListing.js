@@ -16,7 +16,6 @@ class LogrListing extends Component {
     }
 
     handleDelete(item_id){
-       
         var array = this.state.items;
         var the_index;
 
@@ -32,8 +31,6 @@ class LogrListing extends Component {
         }
 
         this.setState({items: array});
-        
-
     }
 
     handleChange(event){
@@ -51,14 +48,6 @@ class LogrListing extends Component {
         };
 
         console.log("NewItem", newItem);
-
-
-        //validate
-
-        //push to webservice
-
-        //get response, if response 201 than show, else render error
-
 
         this.setState((prevState) => ({
             items: prevState.items.concat(newItem),
