@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { Card, CardImg, CardText, CardBlock,
-  CardTitle, CardSubtitle, Button, CardLink } from 'reactstrap';
+  CardTitle, CardSubtitle, Button, CardLink, CardHeader } from 'reactstrap';
 import { Row, Col } from 'reactstrap';
+import ReactMarkdown from 'react-markdown';
 
 class LogrItem extends Component {
 
@@ -19,9 +20,9 @@ class LogrItem extends Component {
                 <Col xs="12" md="6">
                     <article key={content.the_id}>
                         <Card>
+                            <CardHeader>Test</CardHeader>
                             <CardBlock>
-                                <CardTitle>Test {content.the_id}</CardTitle>
-                                <CardText>{content.text}</CardText>
+                                <CardText><ReactMarkdown source={content.text} /></CardText>
                                 <CardSubtitle><p>{content.tags}</p></CardSubtitle>
                                 <CardLink href="javascript:void(0)" onClick={() => this.props.deleteAction(content.the_id)}>Delete</CardLink>
                                 <CardLink href="javascript:void(0)">Edit</CardLink>
