@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import LogrItem from '../components/LogrItem';
 import LogrCreateForm from '../components/LogrCreateForm';
-import { Container, Row, Col, FormGroup, Label, Input, Form, Button, Jumbotron} from 'reactstrap';
+import { Container, Row, Col, FormGroup, Label, Input, Form, Button, Jumbotron, ButtonGroup} from 'reactstrap';
 
 class LogrListing extends Component {
     constructor(props){
@@ -16,6 +16,10 @@ class LogrListing extends Component {
         this.handleDelete = this.handleDelete.bind(this);
     }
 
+    getInitialData(){
+
+    }
+
     handleDelete(item_id){
         var array = this.state.items;
         var the_index;
@@ -23,7 +27,6 @@ class LogrListing extends Component {
         for (var i = 0; i < array.length; i++){
             if (array[i].the_id === item_id){
                 var the_index = i;
-                
             }
         }
 
@@ -51,12 +54,17 @@ class LogrListing extends Component {
             id: Date.now()
         };
 
+
         console.log("NewItem", newItem);
 
         this.setState((prevState) => ({
             items: prevState.items.concat(newItem),
+            tags: "",
+            text: ""
         }));
 
+        console.log("EVENT TARGET AFTER SUBMIT", event)
+        document.getElementById("text").value = "";
         console.log("NEW STATE after adding new item", this.state);
     }
 
@@ -72,14 +80,23 @@ class LogrListing extends Component {
                                 <h2>Create your log</h2>
                                 <Form onSubmit={this.handleSubmit}>
                                     <FormGroup>
+                                         <ButtonGroup>
+                                            <Button>Custom</Button>
+                                            <Button>Meeting Minute</Button>
+                                            <Button>User Story</Button>
+                                            <Button>Milestone</Button>
+                                            <Button>Todo</Button>
+                                        </ButtonGroup>
+                                    </FormGroup>
+                                    <FormGroup>
                                         <Label>Enter Text:</Label>
-                                        <Input onChange={this.handleTextChange} type="textarea" name="text" id="text" />
+                                        <Input onChange={this.handleTextChange} type="textarea" rows="15" name="text" id="text" />
                                     </FormGroup>
                                     <FormGroup>
                                         <Label>Tags:</Label>
                                         <Input type="text" value={this.state.tags} onChange={this.handleChange} name="tags" id="tags" />
                                     </FormGroup>
-                                <Input type="submit" value="Create Log" />
+                                <Button color="primary" type="submit">Create</Button>
                                 </Form>
                             </Col>
                             <Col xs="3"></Col>

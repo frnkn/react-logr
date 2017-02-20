@@ -20,7 +20,7 @@ class LogrItem extends Component {
                 <Col xs="12" md="6">
                     <article key={content.the_id}>
                         <Card>
-                            <CardHeader>Test</CardHeader>
+                            <CardHeader>Test {content.created_on}</CardHeader>
                             <CardBlock>
                                 <CardText><ReactMarkdown source={content.text} /></CardText>
                                 <CardSubtitle><p>{content.tags}</p></CardSubtitle>
