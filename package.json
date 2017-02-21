@@ -12,7 +12,8 @@
     "react-addons-transition-group": "^15.4.2",
     "react-dom": "^15.4.2",
     "react-markdown": "^2.4.4",
-    "reactstrap": "^4.1.1"
+    "reactstrap": "^4.1.1",
+    "whatwg-fetch": "^2.0.2"
   },
   "scripts": {
     "start": "react-scripts start",

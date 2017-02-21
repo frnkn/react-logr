@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import LogrItem from '../components/LogrItem';
 import LogrCreateForm from '../components/LogrCreateForm';
 import { Container, Row, Col, FormGroup, Label, Input, Form, Button, Jumbotron, ButtonGroup} from 'reactstrap';
+import 'whatwg-fetch';
 
 class LogrListing extends Component {
     constructor(props){
@@ -16,8 +17,32 @@ class LogrListing extends Component {
         this.handleDelete = this.handleDelete.bind(this);
     }
 
-    getInitialData(){
+    componentDidMount(){
+        this.getInitialData();
+        
+        console.log("COMPONENT DID MOUnT", this.state);
+    }
 
+    getInitialData(){
+        var url = "http://127.0.0.1:8000/logr_items/";
+        fetch(url, {
+            method: 'get',
+            mode: 'cors'
+        }).then((response) => {
+            return response.json();
+        }).then((json) => {
+            console.log("parsed json". json);
+            this.setState({items: json});
+        });
+        /*
+        .then(function(response){
+            return response.json();
+        }).then(function(json){
+            console.log("parsed json", json);
+            this.setState({"new_items": json});
+        }).catch(function(err){
+            console.log("ERROR fetching data", err);
+        });*/
     }
 
     handleDelete(item_id){
@@ -63,9 +88,7 @@ class LogrListing extends Component {
             text: ""
         }));
 
-        console.log("EVENT TARGET AFTER SUBMIT", event)
         document.getElementById("text").value = "";
-        console.log("NEW STATE after adding new item", this.state);
     }
 
     render (){
@@ -75,7 +98,9 @@ class LogrListing extends Component {
                 <Jumbotron>
                     <Container>
                         <Row>
-                            <Col xs="3"></Col>
+                            <Col xs="3">
+                               
+                            </Col>
                             <Col xs="6">
                                 <h2>Create your log</h2>
                                 <Form onSubmit={this.handleSubmit}>
@@ -105,6 +130,12 @@ class LogrListing extends Component {
                 </Jumbotron>
                
             <Container>
+                <Row>
+                    <Col xs="12">
+                         Filter:
+
+                    </Col>
+                </Row>
                 <Row>
                     <Col xs="12">
                         {this.state.items.map((item) => (
