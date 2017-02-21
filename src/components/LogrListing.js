@@ -74,9 +74,10 @@ class LogrListing extends Component {
         console.log("SUBMIT STATE", this.state);
         event.preventDefault();
         var newItem = {
+            logr_item_type: "Meeting Minute",
             text: this.state.text,
             tags: this.state.tags,
-            id: Date.now()
+            project: "http://127.0.0.1:8000/projects/1/"
         };
 
 
@@ -89,6 +90,22 @@ class LogrListing extends Component {
         }));
 
         document.getElementById("text").value = "";
+        let post_data = JSON.stringify(newItem);
+        console.log("POST DATA", post_data);
+        //send data to server
+        var url = "http://127.0.0.1:8000/logr_items/";
+        fetch(url, {
+            method: 'post',
+            mode: 'cors',
+            body: post_data,
+            headers: new Headers({
+                'Content-Type': 'application/json'
+            })
+        }).then((response) => {
+            return response.json()
+        }).then((post_json) => {
+            console.log("POST DATA", post_json);
+        });
     }
 
     render (){
